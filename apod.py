@@ -50,7 +50,7 @@ query_date = get_date()
 
 # Saves JSON data to new_response and handles exceptions (probably created by incorrect date formatting)
 try:
-    new_response = get_apod(query_date, pp, api_key)
+    new_response = get_apod(query_date, api_key)
 except Exception:
     print("Something went wrong. Did you format your date yyyy-mm-dd? Please restart the program and try again.")
     exit()
