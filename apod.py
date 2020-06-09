@@ -1,4 +1,6 @@
+#!/usr/bin/env
 # Queries astronomy picture of the day from NASA
+# You'll need an API Key from https://api.nasa.gov
 # Use 'pip install requests pprint urllib3' prior to use
 
 # Imports appropriate modules
