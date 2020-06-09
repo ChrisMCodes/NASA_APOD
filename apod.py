@@ -10,17 +10,18 @@ import webbrowser as wb
 from urllib.request import urlretrieve
 from pprint import PrettyPrinter
 
-
-# A couple variables
-pp = PrettyPrinter()
-api_key = "DEMO_KEY" # Key is a string. You can get an api key at https://api.nasa.gov/
+def get_API_key():
+    print("Please enter your API Key.")
+    print("If you do not have one, register at https://api.nasa.gov\n")
+    api_key = input()
+    return api_key
 
 def get_date():
     ''' Queries for date of APOD '''
     print("If you would like to see today's Astronomy photo of the day, press enter.")
     print("Otherwise, enter the date that you would like to query.")
     print("Use only yyyy-mm-dd format\n")
-    try: # Handles errors
+    try: # Handles errors, but does not necessarily recognize date format errors yet
         change_date = input()
     except Exception:
         print("Sorry, the date you entered was not recognized. Your date has been initialized to {}.".format(datetime.date.today()))
@@ -30,8 +31,9 @@ def get_date():
     else:
         return change_date
 
-def get_apod(date, pp, api_key):
+def get_apod(date, api_key):
     ''' Queries the Astronomy Picture of the Day from NASA '''
+    pp = PrettyPrinter()
     URL = "https://api.nasa.gov/planetary/apod"
     params = {'api_key': api_key, 'date': date, 'hd': True} # These params are defined by the API
     response = requests.get(URL, params=params).json()
@@ -39,6 +41,9 @@ def get_apod(date, pp, api_key):
     return response
 
 # Main method of program
+
+# Gets API key
+api_key = get_API_key()
 
 # Saves user-inputted date to query_date
 query_date = get_date()
