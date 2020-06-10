@@ -56,7 +56,10 @@ except Exception:
     exit()
 
 # Queries HD URL for APOD from JSON data and saves it to hd_url
-hd_url = new_response['hdurl']
-
+try:
+    hd_url = new_response['hdurl']
+except Exception:
+    print("Something went wrong. Did you use a valid API key?")
+    exit()
 # Opens HD URL in default web browser (new tab)
 wb.open(hd_url, new=2) 
