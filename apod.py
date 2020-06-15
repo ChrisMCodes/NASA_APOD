@@ -57,9 +57,13 @@ except Exception:
 
 # Queries HD URL for APOD from JSON data and saves it to hd_url
 try:
-    hd_url = new_response['hdurl']
+    if new_response['media_type'] == 'image':
+        hd_url = new_response['hdurl']
+    else:
+        print("Today's APOD is not an image.")
 except Exception:
     print("Something went wrong. Did you use a valid API key?")
     exit()
 # Opens HD URL in default web browser (new tab)
-wb.open(hd_url, new=2) 
+if new_response['media_type'] == 'image':
+    wb.open(hd_url, new=2) 
