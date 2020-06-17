@@ -59,6 +59,8 @@ except Exception:
 try:
     if new_response['media_type'] == 'image':
         hd_url = new_response['hdurl']
+    elif new_response['media_type'] == 'video':
+        hd_url = new_response['url']
     else:
         print("Today's APOD is not an image.")
 except Exception:
